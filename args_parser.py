@@ -18,11 +18,11 @@ class ConsoleArgsParser(argparse.ArgumentParser):
                       ------------------------------------------------------------------
                       This program had been tested on Python 3.5.2.
                       ''')
-        self.add_argument('filepath', nargs='?',
+        self.add_argument('input_filepath', nargs='?',
                           help='Paste full path to file, \
                           e.g /home/user/documents/test.jpg',
                           action='store')
-        self.add_argument('output', nargs='?',
+        self.add_argument('output_filepath', nargs='?',
                           help='Specify the full path to folder and filename\
                               e.g /home/user/documents/test_200x100.jpg, \
                               else result will be shown in terminal window',
@@ -31,15 +31,15 @@ class ConsoleArgsParser(argparse.ArgumentParser):
                           help='The width of the output (pixels),\
                               e.g -width 127 \
                               (default: %(default)s)',
-                          type=int, default=100)
+                          type=int, default=None)
         self.add_argument('-height',
                           help='The height of the output (pixels),\
                               e.g -height 15 \
                               (default: %(default)s)',
-                          type=int, default=100)
+                          type=int, default=None)
         self.add_argument('-enlarge_scale',
                           help='Enlarge a picture n-times,\
-                              e.g -scale 5 \
+                              e.g -enlarge_scale 5 \
                               (default: %(default)s)',
                           type=float, default=None)
         self.add_argument('-reduce_scale',
