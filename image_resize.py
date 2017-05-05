@@ -39,3 +39,4 @@ if __name__ == '__main__':
     get_type_of_resize(args.input_filepath, args.output_filepath,
                        args.output_format, args.height, args.width,
                        args.enlarge_scale, args.reduce_scale)
+    print('File created.')
