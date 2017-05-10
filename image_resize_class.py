@@ -45,15 +45,6 @@ class ResizableImage(object):
             self._image.thumbnail(size)
             return self._image
 
-    def scaling_up_image(self, num_scale):
-        if num_scale > 1:
-            size = (int(self.image_height * num_scale), int(self.image_width * num_scale))
-            return ImageOps.fit(self._image, size)
-        else:
-            size = (int(self.image_height + (self.image_height * num_scale)),
-                    int(self.image_width + (self.image_width * num_scale)))
-            return ImageOps.fit(self._image, size)
-
     def resize_image_scale(self, scale):
         modified_image = self.scaling_up_image(scale)
         modified_image_height, modified_image_width = modified_image.size
