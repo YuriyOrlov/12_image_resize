@@ -9,10 +9,10 @@ $ python image_resize.py 2017.jpg
 File created.
 
 ```
-If you specify keys, which cannot work together, for example `-enlarge_scale` and `-width` script will return you an error:
+If you specify keys, which cannot work together, for example `-scale` and `-width` script will return you an error:
 
 ```#!bash
-$ python image_resize.py 2017.jpg -enlarge_scale 2 -width 1555
+$ python image_resize.py 2017.jpg -scale 2 -width 1555
 Traceback (most recent call last):
   File "image_resize.py", line 41, in <module>
     args.enlarge_scale, args.reduce_scale)
