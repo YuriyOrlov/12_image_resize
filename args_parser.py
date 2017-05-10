@@ -37,14 +37,10 @@ class ConsoleArgsParser(argparse.ArgumentParser):
                               e.g -height 15 \
                               (default: %(default)s)',
                           type=int, default=None)
-        self.add_argument('-enlarge_scale',
+        self.add_argument('-scale',
                           help='Enlarge a picture n-times,\
-                              e.g -enlarge_scale 5 \
-                              (default: %(default)s)',
-                          type=float, default=None)
-        self.add_argument('-reduce_scale',
-                          help='Reduce an image n-times,\
-                              e.g -reduce_scale 3 \
+                              e.g -scale 5 or \
+                              -scale 1.3 if you want to use percentage \
                               (default: %(default)s)',
                           type=float, default=None)
         self.add_argument('-output_format',
