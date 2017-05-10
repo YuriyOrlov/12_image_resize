@@ -4,16 +4,15 @@ from PIL import ImageOps
 class ResizableImage(object):
 
     def __init__(self, image, input_filepath, output_filepath,
-                 output_format, height, width, enlarge_scale, reduce_scale, *args, **kwargs):
+                 output_format, height, width, scale, *args, **kwargs):
         self._image = image
         self.input_filepath = input_filepath
         self.output_filepath = output_filepath
         self.output_format = output_format
         self.height = height
         self.width = width
-        self.enlarge_scale = enlarge_scale
-        self.reduce_scale = reduce_scale
-        self.action = None
+        self.scale = scale
+        self.custom_ratio = None
         super(ResizableImage, self).__init__(*args, **kwargs)
         self.image_height, self.image_width = self.size
         self.original_aspect_ratio = float(self.image_height / self.image_width)
@@ -55,13 +54,7 @@ class ResizableImage(object):
                     int(self.image_width + (self.image_width * num_scale)))
             return ImageOps.fit(self._image, size)
 
-    def resize_image_enlarge_scale(self, scale):
-        modified_image = self.scaling_up_image(scale)
-        modified_image_height, modified_image_width = modified_image.size
-        output_filename = self.create_name_for_output_file(modified_image_height, modified_image_width)
-        modified_image.save(output_filename, self.output_format)
-
-    def resize_image_reduce_scale(self, scale):
+    def resize_image_scale(self, scale):
         modified_image = self.scaling_up_image(scale)
         modified_image_height, modified_image_width = modified_image.size
         output_filename = self.create_name_for_output_file(modified_image_height, modified_image_width)
@@ -89,17 +82,15 @@ class ResizableImage(object):
         self._image.save(output_filename, self.output_format)
 
     def determine_action(self):
-        if self.enlarge_scale and not (self.height or self.width or self.reduce_scale):
-            self.resize_image_enlarge_scale(self.enlarge_scale)
-        elif self.reduce_scale and not (self.height or self.width or self.enlarge_scale):
-            self.resize_image_reduce_scale(self.reduce_scale)
-        elif self.height and not (self.width or self.enlarge_scale or self.reduce_scale):
+        if self.scale and not (self.height or self.width):
+            self.resize_image_scale(self.scale)
+        elif self.height and not (self.width or self.scale):
             self.resize_image_with_new_height(self.height)
-        elif self.width and not (self.height or self.enlarge_scale or self.reduce_scale):
+        elif self.width and not (self.height or self.scale):
             self.resize_image_with_new_width(self.width)
-        elif self.height and self.width and not (self.enlarge_scale or self.reduce_scale):
-            self.action = 'height_width'
-        elif self.output_format and not (self.height or self.width or self.enlarge_scale or self.reduce_scale):
+        elif self.height and self.width and not (self.scale):
+            self.custom_ratio = True
+        elif self.output_format and not (self.height or self.width or self.scale):
             self.change_image_format()
         else:
             raise ValueError('Too many keys. Please, remove some keys from the row.')
