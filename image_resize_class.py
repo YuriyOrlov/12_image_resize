@@ -34,16 +34,14 @@ class ResizableImage(object):
             input_filename = (self.input_filepath.split("/")[-1]).split(".")[0]
             return "{}/{}_{}x{}.png".format(self.output_filepath, input_filename, new_image_height, new_image_width)
 
-    def scaling_down_image(self, num_scale):
+    def scaling_up_image(self, num_scale):
         if num_scale > 1:
-            size = (self.image_height / num_scale, self.image_width / num_scale)
-            self._image.thumbnail(size)
-            return self._image
+            size = (int(self.image_height * num_scale), int(self.image_width * num_scale))
+            return ImageOps.fit(self._image, size)
         else:
-            size = (self.image_height - (self.image_height * num_scale),
-                    self.image_width - (self.image_width * num_scale))
-            self._image.thumbnail(size)
-            return self._image
+            size = (int(self.image_height + (self.image_height * num_scale)),
+                    int(self.image_width + (self.image_width * num_scale)))
+            return ImageOps.fit(self._image, size)
 
     def resize_image_scale(self, scale):
         modified_image = self.scaling_up_image(scale)
