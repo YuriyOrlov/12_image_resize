@@ -22,7 +22,7 @@ ValueError: Too many keys. Please, remove some keys from the row.
 
 ```
 
-In this case just remove some unneded keys and rerun program.
+In this case just remove some unneeded keys and rerun program.
 
 # Project Goals
 
