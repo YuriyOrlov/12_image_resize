@@ -2,14 +2,6 @@ from args_parser import ConsoleArgsParser
 from PIL import Image, ImageOps
 
 
-# def create_name_for_output_file(path_to_original, path_to_result, new_image_height, new_image_width, output_format):
-#     if output_format == "JPEG":
-#         input_filename = (path_to_original.split("/")[-1]).split(".")[0]
-#         return "{}/{}_{}x{}.jpeg".format(path_to_result, input_filename, new_image_height, new_image_width)
-#     else:
-#         input_filename = (path_to_original.split("/")[-1]).split(".")[0]
-#         return "{}/{}_{}x{}.png".format(path_to_result, input_filename, new_image_height, new_image_width)
-
 def create_name_for_output_file(path_to_original, path_to_result, new_image_height, new_image_width, output_format):
     input_filename = (path_to_original.split("/")[-1]).split(".")[0]
     output_filename = "{}/{}_{}x{}.".format(path_to_result,
