@@ -6,7 +6,6 @@ Example of program run.
 
 ```#!bash
 $ python image_resize.py 2017.jpg
-File created.
 
 ```
 If you specify keys, which cannot work together, for example `-scale` and `-width` script will return you an error:
@@ -22,7 +21,7 @@ ValueError: Too many keys. Please, remove some keys from the row.
 
 ```
 
-In this case just remove some unneeded keys and rerun program.
+In this case just remove some keys and run program once more.
 
 # Project Goals
 
