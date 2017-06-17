@@ -2,6 +2,13 @@ from args_parser import ConsoleArgsParser
 from PIL import Image, ImageOps
 
 
+def image_resize(image, path_to_original, path_to_result, output_format, **kwargs):
+    image_height, image_width = image.size
+    size = (int(image_height * scale), int(image_width * scale))
+
+
+
+
 def create_name_for_output_file(path_to_original, path_to_result, new_image_height, new_image_width, output_format):
     input_filename = (path_to_original.split("/")[-1]).split(".")[0]
     output_filename = "{}/{}_{}x{}.".format(path_to_result,
